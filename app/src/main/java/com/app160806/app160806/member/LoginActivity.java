@@ -9,7 +9,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.app160806.app160806.R;
-import com.app160806.app160806.mypage.MyPageActivity;
 
 public class LoginActivity extends Activity implements View.OnClickListener {
     EditText et_id, et_pw;
@@ -49,7 +48,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 }
                 else{
                     if(pw.equals(result.getPw())){
-                        startActivity(new Intent(this.getApplicationContext(),MyPageActivity.class));
+                        startActivity(new Intent(this.getApplicationContext(),LoginActivity.class));
                     }
                     else{
                         Toast.makeText(LoginActivity.this, "입력하신 : "+ pw + "존재하지 않습니다.", Toast.LENGTH_LONG).show();
