@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.List;
+
 /**
  * Created by 1027 on 2016-08-06.
  */
@@ -79,5 +81,22 @@ public class MemberDAO extends SQLiteOpenHelper {
         db.execSQL(sql);
         db.close();
     }
+    public MemberBean findById(String id) {
+        return null;
+    }  // ID 존재여부
+    public int count() {
+        return 0;
+    }  // 회원 수
+    public List<MemberBean> list() {
+        return null;
+    }  // 전체목록
+    public List<MemberBean> findByName(String name) {
+        return null;
+    }  // 이름으로 검색
+    // UPDATE
+    public  void update(MemberBean member) {}
+
+    // DELETE
+    public void deleter(String id) {}
 
 }
