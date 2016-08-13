@@ -21,7 +21,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".member.LoginActivity" />
         <activity android:name=".member.JoinActivity" />
-        <activity android:name=".mypage.MyPageActivity"></activity>
+        <activity android:name=".mypage.MyPageActivity" />
+        <activity android:name=".mypage.ListActivity" />
+        <activity android:name=".mypage.DetailActivity" />
+        <activity android:name=".mypage.UpdateActivity"></activity>
     </application>
 
 </manifest>

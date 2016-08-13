@@ -82,8 +82,27 @@ public class MemberDAO extends SQLiteOpenHelper {
         db.close();
     }
     public MemberBean findById(String id) {
-        return null;
+        String sql = "select " +
+                String.format(" '%s', '%s', '%s', '%s', '%s', '%s')",ID, PW, NAME, PHONE, EMAIL, ADDR) +
+                String.format(" where id = '%s';", id);
+        SQLiteDatabase db = this.getReadableDatabase();
+        MemberBean result = new MemberBean();
+        Cursor cursor = db.rawQuery(sql, null);
+        if(cursor.moveToNext()){
+            result.setId(cursor.getString(0));
+            result.setPw(cursor.getString(1));
+            result.setName(cursor.getString(2));
+            result.setPhone(cursor.getString(3));
+            result.setEmail(cursor.getString(4));
+            result.setAddr(cursor.getString(5));
+        }
+        else {
+            result.setId("NONE");
+        }
+
+        return result;
     }  // ID 존재여부
+
     public int count() {
         return 0;
     }  // 회원 수

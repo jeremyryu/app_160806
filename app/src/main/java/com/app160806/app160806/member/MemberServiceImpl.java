@@ -30,32 +30,37 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public int count() {
+        Log.d("서비스:JOIN count", "진입");
         return dao.count();
     }
 
     @Override
     public List<MemberBean> list() {
+        Log.d("서비스:JOIN List", "진입");
         return dao.list();
     }
 
     @Override
     public List<MemberBean> findByName(String name) {
+        Log.d("서비스:JOIN findByName", name);
         return dao.findByName(name);
     }
 
     @Override
     public void update(MemberBean member) {
+        Log.d("서비스:JOIN update", "진입");
         dao.update(member);
     }
 
     @Override
     public void deleter(String id) {
+        Log.d("서비스:JOIN deleter", id);
         dao.deleter(id);
     }
 
     @Override
     public void join(MemberBean member) {
-        Log.d("서비스: JOIN - ID 체크", member.getId());
+        Log.d("서비스: JOIN 체크", member.getId());
         dao.join(member);;
     }
 }
