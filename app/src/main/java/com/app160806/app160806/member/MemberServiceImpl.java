@@ -3,7 +3,7 @@ package com.app160806.app160806.member;
 import android.content.Context;
 import android.util.Log;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by 1027 on 2016-08-06.
@@ -35,13 +35,13 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public List<MemberBean> list() {
+    public ArrayList<MemberBean> list() {
         Log.d("서비스:JOIN List", "진입");
         return dao.list();
     }
 
     @Override
-    public List<MemberBean> findByName(String name) {
+    public ArrayList<MemberBean> findByName(String name) {
         Log.d("서비스:JOIN findByName", name);
         return dao.findByName(name);
     }

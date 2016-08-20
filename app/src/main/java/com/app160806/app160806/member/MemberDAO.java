@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by 1027 on 2016-08-06.
@@ -57,7 +57,7 @@ public class MemberDAO extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("select id, pw from member " +
-                " where id = '"+ member.getId()+"'", null);
+                " where id = '"+ member.getId()+"';", null);
         if(cursor.moveToNext()) {
             result.setId(cursor.getString(0));
             result.setPw(cursor.getString(1));
@@ -83,7 +83,7 @@ public class MemberDAO extends SQLiteOpenHelper {
     }
     public MemberBean findById(String id) {
         String sql = "select " +
-                String.format(" '%s', '%s', '%s', '%s', '%s', '%s')",ID, PW, NAME, PHONE, EMAIL, ADDR) +
+                String.format(" '%s', '%s', '%s', '%s', '%s', '%s' from member ",ID, PW, NAME, PHONE, EMAIL, ADDR) +
                 String.format(" where id = '%s';", id);
         SQLiteDatabase db = this.getReadableDatabase();
         MemberBean result = new MemberBean();
@@ -106,10 +106,10 @@ public class MemberDAO extends SQLiteOpenHelper {
     public int count() {
         return 0;
     }  // 회원 수
-    public List<MemberBean> list() {
+    public ArrayList<MemberBean> list() {
         return null;
     }  // 전체목록
-    public List<MemberBean> findByName(String name) {
+    public ArrayList<MemberBean> findByName(String name) {
         return null;
     }  // 이름으로 검색
     // UPDATE
