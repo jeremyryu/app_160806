@@ -45,7 +45,8 @@ public class UpdateActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.bt_confirm:
-                if(et_email.getText().toString().equals("")) {
+                if(et_email.getText().toString().equals(""))
+                {
                 }
                 else
                 {
