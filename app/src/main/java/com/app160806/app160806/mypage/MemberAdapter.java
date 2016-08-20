@@ -56,12 +56,12 @@ public class MemberAdapter extends BaseAdapter {
     public View getView(int i, View v, ViewGroup g) {
         ViewHolder holder;
         if (v== null) {
-            v = inflater.inflate(0, null);
+            v = inflater.inflate(R.layout.member_list, null);
             holder = new ViewHolder();
 
-            holder.ivPhoto = (ImageView) v.findViewById(0);
-            holder.tvName = (TextView) v.findViewById(0);
-            holder.tvPhone = (TextView) v.findViewById(0);
+            holder.ivPhoto = (ImageView) v.findViewById(R.id.iv_photo);
+            holder.tvName = (TextView) v.findViewById(R.id.tv_name);
+            holder.tvPhone = (TextView) v.findViewById(R.id.tv_phone);
 
             v.setTag(holder);
         }
@@ -69,9 +69,9 @@ public class MemberAdapter extends BaseAdapter {
             holder = (ViewHolder) v.getTag();
         }
 
-        holder.ivPhoto.setImageResource(0);
-        holder.tvName.setText(null);
-        holder.tvPhone.setText(null);
+        holder.ivPhoto.setImageResource(imgs[i]);
+        holder.tvName.setText(list.get(i).getName());
+        holder.tvPhone.setText(list.get(i).getPhone());
 
         return v;
     }

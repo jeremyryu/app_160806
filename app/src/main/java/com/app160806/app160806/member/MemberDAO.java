@@ -72,7 +72,7 @@ public class MemberDAO extends SQLiteOpenHelper {
     public void join(MemberBean member){
         Log.d("DAO: LOGIN -  ID 체크", member.getId());
         String sql = "insert into " +
-                String.format(" member('%s', '%s', '%s', '%s', '%s', '%s')"
+                String.format(" member(%s, %s, %s, %s, %s, %s)"
                         ,ID, PW, NAME, PHONE, EMAIL, ADDR) +
                 String.format(" values ('%s', '%s', '%s', '%s', '%s', '%s');"
                 , member.getId(), member.getPw(), member.getName(), member.getPhone(), member.getEmail(), member.getAddr());
@@ -83,7 +83,7 @@ public class MemberDAO extends SQLiteOpenHelper {
     }
     public MemberBean findById(String id) {
         String sql = "select " +
-                String.format(" '%s', '%s', '%s', '%s', '%s', '%s' from member ",ID, PW, NAME, PHONE, EMAIL, ADDR) +
+                String.format(" %s, %s, %s, %s, %s, %s from member ",ID, PW, NAME, PHONE, EMAIL, ADDR) +
                 String.format(" where id = '%s';", id);
         SQLiteDatabase db = this.getReadableDatabase();
         MemberBean result = new MemberBean();
@@ -107,15 +107,95 @@ public class MemberDAO extends SQLiteOpenHelper {
         return 0;
     }  // 회원 수
     public ArrayList<MemberBean> list() {
-        return null;
+        String sql = "select " +
+                String.format(" %s, %s, %s, %s, %s, %s from member; ",ID, PW, NAME, PHONE, EMAIL, ADDR) ;
+        ArrayList<MemberBean> temp = new ArrayList<MemberBean>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(sql, null);
+        if(cursor != null){
+            Log.d("목록조회", "성공 !!");
+            cursor.moveToFirst();
+        }
+
+        do {
+            MemberBean result = new MemberBean();
+
+            result.setId(cursor.getString(0));
+            result.setPw(cursor.getString(1));
+            result.setName(cursor.getString(2));
+            result.setPhone(cursor.getString(3));
+            result.setEmail(cursor.getString(4));
+            result.setAddr(cursor.getString(5));
+
+            temp.add(result);
+
+        } while (cursor.moveToNext());
+        for (int i=0; i< temp.size();i++)
+        {
+            Log.d("MemberDAO name list", temp.get(i).getName());
+        }
+
+        return temp;
     }  // 전체목록
     public ArrayList<MemberBean> findByName(String name) {
-        return null;
+        String sql = "select " +
+                String.format(" %s, %s, %s, %s, %s from member ",ID, NAME, PHONE, EMAIL, ADDR) +
+                " where name like '%" + name + "%';";
+        ArrayList<MemberBean> temp = new ArrayList<MemberBean>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(sql, null);
+        if(cursor != null){
+            Log.d("목록조회", "성공 !!");
+            cursor.moveToFirst();
+        }
+
+        do {
+            MemberBean result = new MemberBean();
+
+            result.setId(cursor.getString(0));
+            result.setName(cursor.getString(1));
+            result.setPhone(cursor.getString(2));
+            result.setEmail(cursor.getString(3));
+            result.setAddr(cursor.getString(4));
+
+            temp.add(result);
+
+        } while (cursor.moveToNext());
+        for (int i=0; i< temp.size();i++)
+        {
+            Log.d("MemberDAO name list", temp.get(i).getName());
+        }
+
+        return temp;
     }  // 이름으로 검색
     // UPDATE
-    public  void update(MemberBean member) {}
+    public  void update(MemberBean member) {
+        Log.d("DAO update", member.getPw());
+        String sql = "update member set " +
+                String.format( " email = '%s', addr = '%s', pw = '%s' where id = '%s';"
+                        ,member.getEmail()
+                        ,member.getAddr()
+                        ,member.getPw()
+                        ,member.getId()
+                );
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(sql);
+        db.close();
+
+    }
 
     // DELETE
-    public void deleter(String id) {}
+    public void deleter(String id) {
+        Log.d("DAO delete", id);
+        String sql = "delete from member where id = '" +id + "';";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(sql);
+        db.close();
+
+    }
 
 }

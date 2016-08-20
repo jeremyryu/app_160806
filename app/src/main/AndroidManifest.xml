@@ -25,7 +25,17 @@
         <activity android:name=".mypage.ListActivity" />
         <activity android:name=".mypage.DetailActivity" />
         <activity android:name=".mypage.UpdateActivity" />
-        <activity android:name=".util.ImageActivity"></activity>
+        <activity android:name=".util.ImageActivity" />
+        <activity android:name=".mypage.AddActivity" />
+        <!--
+             ATTENTION: This was auto-generated to add Google Play services to your project for
+             App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity android:name=".mypage.SearchActivity"></activity>
     </application>
 
 </manifest>
